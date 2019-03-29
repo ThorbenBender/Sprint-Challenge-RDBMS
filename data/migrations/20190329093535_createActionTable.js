@@ -7,6 +7,8 @@ exports.up = function(knex, Promise) {
 		table.string('action_notes', 128).notNullable().unique();
 
 		table.boolean('action_completed');
+
+		table.integer('project_id').references('project_id').inTable('Projects').notNullable();
 	});
 };
 
