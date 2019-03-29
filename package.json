@@ -1,0 +1,32 @@
+{
+	"name": "Sprint-Challenge-RDBMS",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/ThorbenBender/Sprint-Challenge-RDBMS.git",
+	"author": "Thorben Bender <bender.thorben0@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"server": "nodemon index.js",
+		"table1": "knex migrate:make createProjectTable",
+		"table2": "knex migrate:make createActionTable",
+		"table3": "knex migrate:make createProjectsActionTable",
+		"seed1": "knex seed:make 01-Projects",
+		"seed2": "knex seed:make 02-Actions",
+		"seed3": "knex seed:make 03-ProjectsActions",
+		"runseed1": "knex seed:run 01-Projects",
+		"runseed2": "knex seed:run 02-Projects",
+		"runseed3": "knex seed:run 03-Projects",
+		"migrate": "knex migrate:latest",
+		"runseeds": "knex seed:run",
+		"rollback": "knex migrate:rollback"
+	},
+	"dependencies": {
+		"express": "^4.16.4",
+		"helmet": "^3.16.0",
+		"knex": "^0.16.3",
+		"sqlite3": "^4.0.6"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
+	}
+}
