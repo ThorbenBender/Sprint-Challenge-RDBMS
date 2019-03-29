@@ -11,11 +11,15 @@ routes.use(express.json());
 
 routes.get('/:id', async (req, res) => {
 	try {
-		data = await db('Projects')
-			.where({ project_id: req.params.id })
-			.innerJoin('Actions', 'Projects.project_id', 'Actions.project_id');
-		if (data) {
-			res.status(200).json(data);
+		project = await db.from('Projects').where({ project_id: req.params.id });
+		actions = await db('Actions').where({ project_id: req.params.id });
+		if (project && actions) {
+			projectActions = {
+				project,
+				actions
+			};
+			console.log(projectActions);
+			res.status(200).json(projectActions);
 		}
 	} catch (error) {
 		console.log(error);
